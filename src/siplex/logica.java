@@ -2,6 +2,7 @@
 package siplex;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -9,6 +10,7 @@ import javax.swing.JTable;
  */
 
 public class logica {
+    
   
     public double[][] matriz (int fila, int col, JTable tblMatriz ){
         
@@ -105,7 +107,6 @@ public class logica {
         }
         
         
-        
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 if( i != fil ){
@@ -119,25 +120,27 @@ public class logica {
     }
     
     
-    public double[][] procesoRecursivo(int incognitas, int variables,int orguras, JTable tblMatriz){
+    public double[][] procesoRecursivo(int incognitas, int variables,int orguras, JTable tblMatriz,DefaultTableModel modeloMatriz,DefaultTableModel modeloData){
         
         
-       double matriz[][] = matriz(variables, orguras, tblMatriz);
-       int cont = 0;
+        double matriz[][] = matriz(variables, orguras, tblMatriz);
+       
+        int col = postFilPivot(matriz);
+        int fil = posColPivot(matriz, col);
+        double pivot = getPivot(matriz, fil, col);
         
-            while( cont <= ( incognitas - 1 ) ){
-                
-                int col = postFilPivot(matriz);
-                int fil = posColPivot(matriz, col);
-                double pivot = getPivot(matriz, fil, col);
-                
-                matriz = proceso(matriz, fil, col, pivot);
-                cont++;
-            }
+        
+        String nombreVariable = modeloMatriz.getColumnName( col );
+        modeloData.setValueAt(nombreVariable,fil,0);
+        
+        
+        matriz = proceso(matriz, fil, col, pivot);
             
         return matriz;
        
     }
+    
+    
      
     
     
