@@ -21,6 +21,7 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
     DefaultTableModel modeloMatriz;
     DefaultTableModel modeloData;
     int cont = 0;
+    ColorFila pn = new ColorFila();
     
     
     
@@ -175,10 +176,10 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -206,8 +207,8 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,16 +230,16 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3)))
-                .addGap(0, 17, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,8 +249,8 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,12 +327,7 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
             tblData.setModel(modeloData);
             tblMatriz.setModel(modeloMatriz);
             
-            ColorFila f = new ColorFila();
-            tblMatriz.setDefaultRenderer(tblMatriz.getColumnClass(0), f);
-            
-//            System.out.println( fil+"  "+col);
-            
-            
+             tblMatriz.setDefaultRenderer(Object.class, pn);
             
             
         }catch(Exception e){
@@ -345,46 +341,29 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         try{
-            int incognitas = Integer.parseInt(txtOrgura.getValue().toString());     // captura el numero de incognitas en la ecuacion y luego lo transforma en entero
-        int ecuaciones = Integer.parseInt(txtvariable.getValue().toString());   // captura el numero de ecuaciones y lo parsea a entero
+            int incognitas = Integer.parseInt(txtOrgura.getValue().toString());     
+            int ecuaciones = Integer.parseInt(txtvariable.getValue().toString());   
 
         
-        int fil = ecuaciones + 1;   
-        int col = ecuaciones + incognitas + 2;
+            int fil = ecuaciones + 1;   
+            int col = ecuaciones + incognitas + 2;
 
-        /* Se llama a la clase que contiene la logica del metodo simplex */
 
-        logica simplex = new logica();
+            logica l = new logica();
         
         
         if( cont <= (incognitas -1 ) ){
             
-            double[][] matriz = simplex.procesoRecursivo(incognitas,fil, col, tblMatriz,modeloMatriz, modeloData);
+            double[][] matriz = l.procesoRecursivo(incognitas,fil, col, tblMatriz,modeloMatriz, modeloData);
             
-
             for (int i = 0; i < matriz.length; i++) {
                 for (int j = 0; j < matriz[i].length; j++) {
                     modeloMatriz.setValueAt(matriz[i][j], i, j);
                 }
             }
             
-            String[] vect = new String[col-1] ;
-            boolean aux = true;
-            
-            for (int i = 0; i < vect.length; i++) {
-                vect[i] =  modeloMatriz.getValueAt(0, i).toString();
-            }
-            
-            for (int i = 0; i < vect.length; i++) {
-               if( vect[i].substring(0,1).equals("-")){
-                   aux = false;
-               };
-            }
-            
-             
-            if( aux ){
-                
-                String res  = "";
+          
+              String res  = "";
                 DecimalFormat f  = (DecimalFormat) new DecimalFormat("#.##").getNumberInstance(Locale.US);
                 
                 
@@ -395,16 +374,21 @@ public class FRM_SIMPLEX extends javax.swing.JFrame {
                 }
                 
                 txtArea.setText(res);
-                
+                System.out.println(cont);
+                cont++;
             }
 
             tblMatriz.setModel(modeloMatriz);
             tblData.setModel(modeloData);
+            
+            
 
-            cont++;
-        }
+           
+//        }
         
-        
+            
+
+
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e);

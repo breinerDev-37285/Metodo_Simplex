@@ -15,12 +15,53 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author breiner
  */
 public class ColorFila extends DefaultTableCellRenderer {
+    public int pintarFila,pintarCol;
+
+    public int getPintarFila() {
+        return pintarFila;
+    }
+
+    public void setPintarFila(int pintarFila) {
+        this.pintarFila = pintarFila;
+    }
+
+    public int getPintarCol() {
+        return pintarCol;
+    }
+
+    public void setPintarCol(int pintarCol) {
+        this.pintarCol = pintarCol;
+    }
     
+            
+            
+            
     @Override
     public Component getTableCellRendererComponent( JTable table, Object value, boolean Selected, boolean hasFocus, int row, int col ){
     
         super.getTableCellRendererComponent(table, value, Selected, hasFocus, row, col);
         
+       
+        if( getPintarFila() == row ){
+            setBackground(Color.cyan);
+        }
+        
+        if(getPintarFila() != row && getPintarCol() != col){
+            setBackground(Color.WHITE);
+        }
+        
+        
+        if(getPintarCol()==col){
+            setBackground(Color.YELLOW);
+        }
+        
+         if( hasFocus ){
+            setBackground(Color.WHITE);
+        }
+        
+        if( Selected ){
+            setBackground(Color.WHITE);
+        }
         
         return this;
     }
